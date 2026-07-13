@@ -13,7 +13,7 @@ public class DemoApplication {
 //		Student student = context.getBean(Student.class);
 //		student.setName("Aastha");
 //		student.setAge(32);
-////		Student student = new Student(21, "Aastha");
+//		Student student = new Student(21, "Aastha");
 //
 //		System.out.println(student.getAge());
 //		System.out.println(student.getName());
