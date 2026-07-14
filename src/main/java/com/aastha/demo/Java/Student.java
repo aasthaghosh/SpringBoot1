@@ -1,4 +1,4 @@
-package com.aastha.demo;
+package com.aastha.demo.Java;
 
 import org.springframework.stereotype.Component;
 
