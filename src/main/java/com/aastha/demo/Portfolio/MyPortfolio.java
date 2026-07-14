@@ -31,4 +31,12 @@ public class MyPortfolio {
                 </ul>
                 """;
     }
+    @GetMapping("/education")
+    public String education() {
+        return """
+                <h1>Education</h1>
+                <p>B.Tech in Computer Science Engineering</p>
+                <p>Lovely Professional University (2023 - 2027)</p>
+                """;
+    }
 }
