@@ -39,4 +39,15 @@ public class MyPortfolio {
                 <p>Lovely Professional University (2023 - 2027)</p>
                 """;
     }
+    @GetMapping("/projects")
+    public String projects() {
+        return """
+                <h1>Projects</h1>
+                <ul>
+                    <li><b>RailCoach - Railway Management Website</b> (MERN)</li>
+                    <li><b>Trendiio - Social Media App</b> (MERN + WebSockets)</li>
+                    <li><b>Diet Manager </b> (Node.js,Docker, CI/CD)</li>
+                </ul>
+                """;
+    }
 }
