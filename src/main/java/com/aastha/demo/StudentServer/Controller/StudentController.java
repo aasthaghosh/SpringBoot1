@@ -31,4 +31,36 @@ public class StudentController {
         return ResponseEntity.status(200).body(student);
     }
 
+    //update
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateStudent(@PathVariable int id,@RequestBody Student updatedStudent){
+        Student exstudent = studentService.getStudentById(id);
+
+        if(exstudent == null){
+            return ResponseEntity.status(404).body("Student not found");
+        }
+
+        exstudent.setName(updatedStudent.getName());
+        exstudent.setAge(updatedStudent.getAge());
+        exstudent.setDepartment(updatedStudent.getDepartment());
+
+        Student saved = studentService.updateStudent(exstudent);
+        return ResponseEntity.ok(saved);
+    }
+
+
+
+    //Delete
+    @GetMapping("/delete/{id}")
+    public ResponseEntity<?> deleteStudentById(@PathVariable int id){
+        Student student = studentService.getStudentById(id);
+        if(student==null){
+            return ResponseEntity.status(404).body("Student not found");
+        }
+        studentService.deleteStudentById(id);
+        return ResponseEntity.status(200).body("Entry deleted successfully");
+    }
+
+
 }

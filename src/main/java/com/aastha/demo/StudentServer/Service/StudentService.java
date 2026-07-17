@@ -35,4 +35,15 @@ public class StudentService {
         return studentRepository.findById(id).orElse(null);
     }
 
+    public  Student updateStudent(Student student){
+        return studentRepository.save(student);
+    }
+
+    //Delete
+    public void deleteStudentById(int id){
+        studentRepository.deleteById(id);
+    }
+
+
+
 }
