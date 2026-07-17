@@ -1,9 +1,8 @@
-package com.aastha.demo.StudentServer;
+package com.aastha.demo.StudentServer.Entity;
 
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import org.springframework.context.annotation.Primary;
 
 @Entity
 public class Student {

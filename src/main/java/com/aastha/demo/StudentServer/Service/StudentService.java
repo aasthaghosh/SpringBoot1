@@ -1,5 +1,7 @@
-package com.aastha.demo.StudentServer;
+package com.aastha.demo.StudentServer.Service;
 
+import com.aastha.demo.StudentServer.Entity.Student;
+import com.aastha.demo.StudentServer.Repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

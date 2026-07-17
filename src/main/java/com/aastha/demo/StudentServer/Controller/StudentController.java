@@ -1,5 +1,7 @@
-package com.aastha.demo.StudentServer;
+package com.aastha.demo.StudentServer.Controller;
 
+import com.aastha.demo.StudentServer.Entity.Student;
+import com.aastha.demo.StudentServer.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
