@@ -1,16 +1,29 @@
 package com.aastha.demo.StudentServer.Entity;
 
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 public class Student {
+
     @Id
-    int id;
-    String name;
-    String Department;
-    int age;
+    private int id;
+
+    private String name;
+    private String department;
+    private int age;
+
+    @CreationTimestamp
+    @Column(updatable = false)
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 
     public int getId() {
         return id;
@@ -29,11 +42,11 @@ public class Student {
     }
 
     public String getDepartment() {
-        return Department;
+        return department;
     }
 
     public void setDepartment(String department) {
-        Department = department;
+        this.department = department;
     }
 
     public int getAge() {
@@ -42,5 +55,12 @@ public class Student {
 
     public void setAge(int age) {
         this.age = age;
+    }
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 }
