@@ -1,9 +1,13 @@
 package com.aastha.demo.StudentServer.Service;
 
+import com.aastha.demo.StudentServer.DTO.CreateStudentRequestDTO;
+import com.aastha.demo.StudentServer.DTO.CreateStudentResponseDTO;
 import com.aastha.demo.StudentServer.Entity.Student;
 import com.aastha.demo.StudentServer.Repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 
 @Service
 public class StudentService {
@@ -11,39 +15,81 @@ public class StudentService {
     StudentRepository studentRepository;
 
     @Autowired
-    public StudentService(StudentRepository studentRepository){
+    public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
 
-    public Student studentValidate(Student student){
-        int id = student.getId();
-        String name = student.getName();
-        String Department = student.getDepartment();
-        int age = student.getAge();
+    public CreateStudentResponseDTO studentValidate(CreateStudentRequestDTO createStudentRequestDTO) {
 
-
-        if(id < 0 || name == null || Department == null || age < 0){
-            return null;
-        }
+        Student student = mapToStudent(createStudentRequestDTO);
 
         studentRepository.save(student);
-        return student;
 
+        return mapToResponseDTO(student);
     }
 
-    public Student getStudentById(int id){
+    public Student getStudentById(int id) {
         return studentRepository.findById(id).orElse(null);
     }
 
-    public  Student updateStudent(Student student){
-        return studentRepository.save(student);
+    public Student studentUpdate(int id, Student student) {
+
+        Student result = studentRepository.findById(id).orElse(null);
+
+        if (result == null) {
+            return null;
+        }
+
+        result.setName(student.getName());
+        result.setAge(student.getAge());
+        result.setDepartment(student.getDepartment());
+
+        // Agar Entity me @UpdateTimestamp use kar rahe ho,
+        // to ye line hata bhi sakte ho.
+        result.setUpdatedAt(LocalDateTime.now());
+
+        return studentRepository.save(result);
     }
 
-    //Delete
-    public void deleteStudentById(int id){
-        studentRepository.deleteById(id);
+    public Student deleteStudent(int id) {
+
+        Student result = studentRepository.findById(id).orElse(null);
+
+        if (result == null) {
+            return null;
+        }
+
+        studentRepository.delete(result);
+
+        return result;
     }
 
+    private Student mapToStudent(CreateStudentRequestDTO createStudentRequestDTO) {
 
+        Student student = new Student();
 
+        student.setName(createStudentRequestDTO.getName());
+        student.setAge(createStudentRequestDTO.getAge());
+        student.setDepartment(createStudentRequestDTO.getDepartment());
+
+        // Agar @CreationTimestamp aur @UpdateTimestamp use kar rahe ho
+        // to ye dono lines hata sakte ho.
+        student.setCreatedAt(LocalDateTime.now());
+        student.setUpdatedAt(LocalDateTime.now());
+
+        return student;
+    }
+
+    private CreateStudentResponseDTO mapToResponseDTO(Student student) {
+
+        CreateStudentResponseDTO createStudentResponseDTO =
+                new CreateStudentResponseDTO();
+
+        createStudentResponseDTO.setId(student.getId());
+        createStudentResponseDTO.setName(student.getName());
+        createStudentResponseDTO.setAge(student.getAge());
+        createStudentResponseDTO.setDepartment(student.getDepartment());
+
+        return createStudentResponseDTO;
+    }
 }
