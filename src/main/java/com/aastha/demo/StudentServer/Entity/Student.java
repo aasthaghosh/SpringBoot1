@@ -26,6 +26,10 @@ public class Student {
     @Min(value = 1, message = "Age must be greater than 0")
     private int age;
 
+
+    
+    private String email;
+
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdAt;
