@@ -14,7 +14,7 @@ import java.util.Optional;
 @Service
 public class StudentService {
 
-    StudentRepository studentRepository;
+    private final StudentRepository studentRepository;
 
     @Autowired
     public StudentService(StudentRepository studentRepository) {
@@ -22,6 +22,15 @@ public class StudentService {
     }
 
     public CreateStudentResponseDTO studentValidate(CreateStudentRequestDTO createStudentRequestDTO) {
+        if (createStudentRequestDTO == null ||
+                createStudentRequestDTO.getName() == null ||
+                createStudentRequestDTO.getName().trim().isEmpty() ||
+                createStudentRequestDTO.getAge() <= 0 ||
+                createStudentRequestDTO.getDepartment() == null ||
+                createStudentRequestDTO.getDepartment().trim().isEmpty()) {
+
+            return null;
+        }
 
         Student student = mapToStudent(createStudentRequestDTO);
 
