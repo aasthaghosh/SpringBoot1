@@ -2,6 +2,7 @@ package com.aastha.demo.StudentServer.Controller;
 
 import com.aastha.demo.StudentServer.DTO.CreateStudentRequestDTO;
 import com.aastha.demo.StudentServer.DTO.CreateStudentResponseDTO;
+import com.aastha.demo.StudentServer.DTO.UpdateStudentRequestDTO;
 import com.aastha.demo.StudentServer.Entity.Student;
 import com.aastha.demo.StudentServer.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,7 @@ public class StudentController {
     // Update
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateStudent(@PathVariable int id,
-                                           @RequestBody Student updatedStudent) {
+                                           @RequestBody UpdateStudentRequestDTO updatedStudent) {
 
         Student saved = studentService.studentUpdate(id, updatedStudent);
 

@@ -5,13 +5,17 @@ public class UpdateStudentRequestDTO {
 
     private String name;
     private int age;
+    private String department;
+
 
     public UpdateStudentRequestDTO() {
     }
 
-    public UpdateStudentRequestDTO(String name, int age) {
+    public UpdateStudentRequestDTO(String name, int age, String department) {
         this.name = name;
         this.age = age;
+        this.department = department;
+
     }
 
     public String getName() {
@@ -29,4 +33,14 @@ public class UpdateStudentRequestDTO {
     public void setAge(int age) {
         this.age = age;
     }
+
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
 }

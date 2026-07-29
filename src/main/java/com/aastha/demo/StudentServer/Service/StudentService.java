@@ -2,6 +2,7 @@ package com.aastha.demo.StudentServer.Service;
 
 import com.aastha.demo.StudentServer.DTO.CreateStudentRequestDTO;
 import com.aastha.demo.StudentServer.DTO.CreateStudentResponseDTO;
+import com.aastha.demo.StudentServer.DTO.UpdateStudentRequestDTO;
 import com.aastha.demo.StudentServer.Entity.Student;
 import com.aastha.demo.StudentServer.Repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,7 @@ public class StudentService {
         return student.get();
     }
 
-    public Student studentUpdate(int id, Student student) {
+    public Student studentUpdate(int id, UpdateStudentRequestDTO student) {
 
         Student result = studentRepository.findById(id).orElse(null);
 
